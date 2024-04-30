@@ -5,16 +5,15 @@ import Button from "../components/Button";
 
 type ColorFlipperVersion = 'Simple' | 'Hex';
 
+const defaultBgColor: string = '#FFFFFF';
 const colors: string[] = ["green", "red", "rgba(133,122,200)", "#f15025"];
 const hex: (string | number)[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
 
 export default function ColorFlipper(): React.JSX.Element {
     const [version, setVersion] = React.useState<ColorFlipperVersion>('Simple');
-    const [defaultBgColor, setDefaultBgColor] = React.useState<string>('');
+    const [currentBgColor, setCurrentBgColor] = React.useState<string>(defaultBgColor);
 
     const handleColorClick = React.useCallback(() => {
-        const color = document.querySelector('.color');
-        if (!color) return;
         let randomColor: string = '';
         if (version === 'Simple') {
             randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -24,21 +23,20 @@ export default function ColorFlipper(): React.JSX.Element {
                 randomColor += hex[Math.floor(Math.random() * hex.length)];
             }
         }
-        color.textContent = randomColor;
-        document.body.style.backgroundColor = randomColor;
+        setCurrentBgColor(randomColor);
     }, [version]);
 
     React.useEffect(() => {
-        setDefaultBgColor(document.body.style.backgroundColor);
-
         const btn = document.getElementById('btn');
         btn?.addEventListener('click', handleColorClick);
+        
+        document.body.style.backgroundColor = currentBgColor;
 
         return (): void => {
-            document.body.style.backgroundColor = defaultBgColor;
             btn?.removeEventListener('click', handleColorClick);
+            document.body.style.backgroundColor = defaultBgColor;
         };
-    }, [defaultBgColor, handleColorClick]);
+    }, [currentBgColor, handleColorClick]);
 
     return (
         <>
@@ -50,7 +48,7 @@ export default function ColorFlipper(): React.JSX.Element {
                 </div>
             </div>
             <div className="w-fit mx-auto mt-4">
-                <p className="text-2xl font-bold bg-black text-white p-3 mb-4 rounded-lg">Background Color : <span className="color text-pink-300"></span></p>
+                <p className="text-2xl font-bold bg-black text-white p-3 mb-4 rounded-lg">Background Color : <span className="color text-pink-300">{currentBgColor}</span></p>
                 <div className="text-center">
                     <Button id="btn" type="dark">Click Me!</Button>
                 </div>
