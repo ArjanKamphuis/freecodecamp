@@ -9,14 +9,15 @@ type NavigationLink = {
 
 const navigationList: NavigationLink[] = [
     { id: 0, text: 'Color Flipper', link: '/01-colorflipper' },
+    { id: 1, text: 'Counter', link: '/02-counter' }
 ];
 
-const listItems: React.JSX.Element[] = navigationList.map(nav => {
+const listItems: React.JSX.Element[] = navigationList.map(item => {
     return (
-        <li key={nav.id} className=" text-blue-500 hover:text-blue-600 hover:underline font-medium">
-            <Link href={nav.link}>{nav.id + 1}. {nav.text}</Link>
+        <li key={item.id} className=" text-blue-500 hover:text-blue-600 hover:underline font-medium">
+            <Link href={item.link}>{item.id + 1}. {item.text}</Link>
         </li>
-    )
+    );
 });
 
 export const NavigationList = React.memo(() => {

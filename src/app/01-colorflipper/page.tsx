@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Button from "../components/Button";
+import { Button } from "../components/Button";
 
 type ColorFlipperVersion = 'Simple' | 'Hex';
 
@@ -10,7 +10,7 @@ const colors: string[] = ["green", "red", "rgba(133,122,200)", "#f15025"];
 const hex: (string | number)[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
 
 export default function ColorFlipper(): React.JSX.Element {
-    const [version, setVersion] = React.useState<ColorFlipperVersion>('Simple');
+    const [version, setVersion] = React.useState<ColorFlipperVersion>('Hex');
     const [currentBgColor, setCurrentBgColor] = React.useState<string>(defaultBgColor);
 
     const handleColorClick = React.useCallback(() => {
@@ -50,7 +50,7 @@ export default function ColorFlipper(): React.JSX.Element {
             <div className="w-fit mx-auto mt-4">
                 <p className="text-2xl font-bold bg-black text-white p-3 mb-4 rounded-lg">Background Color : <span className="color text-pink-300">{currentBgColor}</span></p>
                 <div className="text-center">
-                    <Button id="btn" type="dark">Click Me!</Button>
+                    <Button id="btn" style="dark">Click Me!</Button>
                 </div>
             </div>
         </>
