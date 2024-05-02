@@ -13,7 +13,7 @@ export type ButtonProps = {
 };
 
 export const Button = memo(({ children, style, onClick, disabled, id, className }: ButtonProps) => {
-    const classes: string = (className ? `${className} ` : '') + buttonMap.get(style ?? 'default');
+    const classes: string = buttonMap.get(style ?? 'default') + (className ? ` ${className} ` : '');
     return <button className={classes} onClick={onClick} disabled={disabled} id={id}>{children}</button>;
 });
 Button.displayName = 'Button';

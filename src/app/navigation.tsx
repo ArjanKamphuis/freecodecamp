@@ -9,7 +9,8 @@ type NavigationLink = {
 
 const navigationList: NavigationLink[] = [
     { id: 0, text: 'Color Flipper', link: '/01-colorflipper' },
-    { id: 1, text: 'Counter', link: '/02-counter' }
+    { id: 1, text: 'Counter', link: '/02-counter' },
+    { id: 2, text: 'Reviews', link: '/03-reviews' }
 ];
 
 const listItems: React.JSX.Element[] = navigationList.map(item => {
