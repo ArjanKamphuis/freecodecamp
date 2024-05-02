@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Freecodecamp - 40 JavaScript Projects for Beginners",
-    description: "https://www.freecodecamp.org/news/javascript-projects-for-beginnersp",
+    description: "https://www.freecodecamp.org/news/javascript-projects-for-beginners",
 };
 
 export default function RootLayout({
