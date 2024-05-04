@@ -33,16 +33,14 @@ QuestionComponent.displayName = 'QuestionComponent';
 export default function Questions(): React.JSX.Element {
     const [questions, setQuestions] = useState<Question[]>(initialQuestions);
 
-    const handleCollapseClick = useCallback((question: Question) => {
-        const newQuestions: Question[] = questions.map(q => {
-            q.collapsed = q.id === question.id ? !q.collapsed : false;
-            return q;
-        });
-        setQuestions(newQuestions);
+    const handleCollapseClick = useCallback((questionId: number) => {
+        setQuestions(questions.map((question: Question) => {
+            return { ...question, collapsed: question.id === questionId ? !question.collapsed : false };
+        }));
     }, [questions]);
 
     const questionList: React.JSX.Element[] = useMemo(() => questions.map(question => {
-        return <QuestionComponent key={question.id} question={question} onCollapseClick={() => handleCollapseClick(question)} />
+        return <QuestionComponent key={question.id} question={question} onCollapseClick={() => handleCollapseClick(question.id)} />
     }), [handleCollapseClick, questions]);
 
     return (

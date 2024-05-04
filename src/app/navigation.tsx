@@ -14,7 +14,9 @@ const navigationList: NavigationLink[] = [
     { id: 3, text: 'Navigation Bar', link: '/04-navbar' },
     { id: 4, text: 'Sidebar', link: '/05-sidebar' },
     { id: 5, text: 'Modal', link: '/06-modal' },
-    { id: 6, text: 'Questions', link: '/07-questions' }
+    { id: 6, text: 'Questions', link: '/07-questions' },
+    { id: 7, text: 'Menu', link: '/08-menu' },
+    { id: 8, text: 'Video', link: '/09-video' }
 ];
 
 const listItems: React.JSX.Element[] = navigationList.map(item => {
