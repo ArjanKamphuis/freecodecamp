@@ -22,8 +22,8 @@ const ScrollLink = memo(({ href, children, className }: ScrollLinkProps): React.
         // e.preventDefault();
 
         // const id: string = e.currentTarget.getAttribute('href')!.slice(1);
-        // const target: HTMLElement = document.getElementById(id) as HTMLElement;
-        // const linksContainer: HTMLElement = document.querySelector('.links-container') as HTMLElement;
+        // const target: HTMLElement = document.getElementById(id)!;
+        // const linksContainer: HTMLElement = document.querySelector('.links-container')!;
         // const navbar: Element = document.getElementById('nav')!;
 
         // const navHeight: number = navbar.getBoundingClientRect().height;
@@ -78,18 +78,32 @@ export default function Scroll(): React.JSX.Element {
         setLinksContainerHeight(height => height > 0 ? 0 : linksHeight.height);
     }, []);
 
+    const handleScroll = useEffectEvent(() => {
+        const navbar: Element = document.getElementById('nav')!;
+        const topLink: Element = document.querySelector('.top-link')!;
+
+        const scrollHeight: number = window.scrollY;
+        const navHeight: number = navbar.getBoundingClientRect().height;
+
+        navbar.classList[scrollHeight > navHeight ? 'add' : 'remove']('fixed-nav');
+        topLink.classList[scrollHeight > 500 ? 'add' : 'remove']('show-link');
+    });
+
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            const navbar: Element = document.getElementById('nav')!;
-            const topLink: Element = document.querySelector('.top-link')!;
+        window.addEventListener('scroll', handleScroll);
+        return (): void => { window.removeEventListener('scroll', handleScroll); };
+    }, [handleScroll]);
 
-            const scrollHeight: number = window.scrollY;
-            const navHeight: number = navbar.getBoundingClientRect().height;
+    const handleResize = useEffectEvent(() => {
+        const navbar: HTMLElement = document.getElementById('nav')!;
+        navbar.style.width = `${document.getElementById('home')!.getBoundingClientRect().width}px`;
+    });
 
-            navbar.classList[scrollHeight > navHeight ? 'add' : 'remove']('fixed-nav');
-            topLink.classList[scrollHeight  > 500 ? 'add' : 'remove']('show-link');
-        });
-    }, []);
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return (): void => { window.removeEventListener('resize', handleResize); };
+    }, [handleResize]);
 
     return (
         <div className="relative">
