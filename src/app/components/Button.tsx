@@ -10,11 +10,12 @@ export type ButtonProps = {
     disabled?: boolean;
     id?: string;
     className?: string;
+    type?: 'submit' | 'reset' | 'button';
 };
 
-export const Button = memo(({ children, style, onClick, disabled, id, className }: ButtonProps) => {
+export const Button = memo(({ children, style, onClick, disabled, id, className, type }: ButtonProps) => {
     const classes: string = buttonMap.get(style ?? 'default') + (className ? ` ${className} ` : '');
-    return <button className={classes} onClick={onClick} disabled={disabled} id={id}>{children}</button>;
+    return <button className={classes} onClick={onClick} disabled={disabled} id={id} type={type}>{children}</button>;
 });
 Button.displayName = 'Button';
 

@@ -19,29 +19,30 @@ type ScrollLinkProps = {
 
 const ScrollLink = memo(({ href, children, className }: ScrollLinkProps): React.JSX.Element => {
     const handleLinkClick = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        // const id: string = e.currentTarget.getAttribute('href')!.slice(1);
-        // const target: HTMLElement = document.getElementById(id)!;
-        // const linksContainer: HTMLElement = document.querySelector('.links-container')!;
-        // const navbar: Element = document.getElementById('nav')!;
+        const id: string = e.currentTarget.getAttribute('href')!.slice(1);
+        const target: HTMLElement = document.getElementById(id)!;
+        const linksContainer: HTMLElement = document.querySelector('.links-container')!;
+        const navbar: Element = document.getElementById('nav')!;
 
-        // const navHeight: number = navbar.getBoundingClientRect().height;
-        // const linksContainerHeight: number = linksContainer.getBoundingClientRect().height;
-        // const fixedNav: boolean = navbar.classList.contains('fixed-nav');
+        const navHeight: number = navbar.getBoundingClientRect().height;
+        const linksContainerHeight: number = linksContainer.getBoundingClientRect().height;
+        const fixedNav: boolean = navbar.classList.contains('fixed-nav');
 
-        // let position: number = target.offsetTop - navHeight;
-        // if (!fixedNav) position -= navHeight;
-        // if (navHeight > 82) position += linksContainerHeight;
+        let position: number = target.offsetTop - navHeight;
+        if (fixedNav) position += navHeight;
+        //if (navHeight > 82) position += linksContainerHeight - navHeight;
 
-        // window.scrollTo({
-        //     left: 0,
-        //     top: position
-        // });
+        window.scrollTo({
+            left: 0,
+            top: position,
+            behavior: 'smooth'
+        });
 
-        // linksContainer.style.height = '0';
-        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' } as ScrollIntoViewOptions);
-    }, [href]);
+        linksContainer.style.height = '0';
+        //document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' } as ScrollIntoViewOptions);
+    }, [/*href*/]);
     return <a onClick={handleLinkClick} href={href} className={className}>{children}</a>;
 });
 ScrollLink.displayName = 'ScrollLink';

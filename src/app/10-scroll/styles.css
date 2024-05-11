@@ -55,10 +55,6 @@ Variables
   --fixed-width: 620px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /*  global classes */
 .btn {
   text-transform: uppercase;

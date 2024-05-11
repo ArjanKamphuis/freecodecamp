@@ -14,6 +14,7 @@ type TabContent = {
 
 export default function Tabs(): React.JSX.Element {
     const [activeContentIndex, setActiveContentIndex] = useState<number>(0);
+    const activeContent: TabContent = initialTabContents[activeContentIndex];
 
     const tabContents: TabContent[] = useMemo(() => {
         return initialTabContents.map((tabContent, index) => {
@@ -21,43 +22,37 @@ export default function Tabs(): React.JSX.Element {
         });
     }, [activeContentIndex]);
 
-    const btns: React.JSX.Element[] = tabContents.map(tabContent => {
-        return <button onClick={() => setActiveContentIndex(tabContent.id)} key={tabContent.id} className={`tab-btn${tabContent.id === 0 ? ' active' : ''}`} data-id={tabContent.title.toLowerCase()}>{tabContent.title}</button>
+    const btns: React.JSX.Element[] = initialTabContents.map(tabContent => {
+        return <button onClick={() => setActiveContentIndex(tabContent.id)} key={tabContent.id} className={`tab-btn${tabContent.id === activeContentIndex ? ' active' : ''}`} data-id={tabContent.title.toLowerCase()}>{tabContent.title}</button>
     });
 
     const contentList: React.JSX.Element[] = tabContents.map(tabContent => {
         return (
-            <div key={tabContent.id} className={`content${tabContent.id === 0 ? ' active' : ''}`} id={tabContent.title.toLowerCase()}>
+            <div key={tabContent.id} className={`content${tabContent.id === activeContentIndex ? ' active' : ''}`} id={tabContent.title.toLowerCase()}>
                 <h4 className="text-lg font-medium">{tabContent.title}</h4>
                 {tabContent.content}
             </div>
         );
     });
 
-    const handleContainerClick = useEffectEvent((e: Event) => {
-        const id: string | undefined = (e.target as HTMLElement).dataset.id;
-        const buttons: NodeListOf<Element> = document.querySelectorAll('.tab-btn')!;
-        const articles: NodeListOf<Element> = document.querySelectorAll('.content');
-        if (id) {
-            buttons.forEach((btn) => {
-                btn.classList.remove('active');
-            });
-            (e.target as HTMLElement).classList.add('active');
+    // const handleContainerClick = useEffectEvent((e: Event) => {
+    //     const id: string | undefined = (e.target as HTMLElement).dataset.id;
+    //     if (id) {
+    //         document.querySelectorAll('.tab-btn').forEach((btn: Element): void => {
+    //             btn.classList[(btn as HTMLElement).dataset.id === id ? 'add' : 'remove']('active');
+    //         });
 
-            articles.forEach(article => {
-                article.classList.remove('active');
-            });
+    //         document.querySelectorAll('.content').forEach((article: Element): void => {
+    //             article.classList[article.id === id ? 'add' : 'remove']('active');
+    //         });
+    //     }
+    // });
 
-            const element = document.getElementById(id)!;
-            element.classList.add('active');
-        }
-    });
-
-    useEffect(() => {
-        const about: Element = document.querySelector('.about')!;
-        about.addEventListener('click', handleContainerClick);
-        return (): void => { about.removeEventListener('click', handleContainerClick); };
-    }, [handleContainerClick]);
+    // useEffect(() => {
+    //     const about: Element = document.querySelector('.about')!;
+    //     about.addEventListener('click', handleContainerClick);
+    //     return (): void => { about.removeEventListener('click', handleContainerClick); };
+    // }, [handleContainerClick]);
 
     return (
         <section>
@@ -69,9 +64,15 @@ export default function Tabs(): React.JSX.Element {
                 <article>
                     <Image className="mb-8 lg:mb-0 rounded-xl object-cover" src="/hero-bcg.jpeg" alt="hero" width={1000} height={684} priority />
                 </article>
-                <article className="bg-gray-100 about">
+                <article className="bg-gray-100 rounded-lg about">
                     <div className="grid grid-cols-3">{btns}</div>
-                    <div className="mx-6 my-8">{contentList}</div>
+                    <div className="mx-6 my-8">
+                        {/* {contentList} */}
+                        <div key={activeContent.id} className="content active" id={activeContent.title.toLowerCase()}>
+                            <h4 className="text-lg font-medium">{activeContent.title}</h4>
+                            {activeContent.content}
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
