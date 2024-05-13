@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&display=swap');
+
+.green-glow {
+    border: 4px solid #4DCC7D;
+    box-shadow: 0 0 10px #31B43A;
+}
+
+.red-glow {
+    border: 4px solid #FC121B;
+    box-shadow: 0 0 10px #D01115;
+}
+
+.gray-glow {
+    border: 4px solid #464647;
+    box-shadow: 0 0 10px #25292B;
+}
