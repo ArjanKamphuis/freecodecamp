@@ -23,7 +23,8 @@ const navigationList: NavigationLink[] = [
     { id: 12, text: 'Lorem Ipsum', link : '/13-lorem-ipsum' },
     { id: 13, text: 'Grocery Bud', link: '/14-grocery-bud' },
     { id: 14, text: 'Slider', link: '/15-slider' },
-    { id: 15, text: 'Rock Paper Scissors', link: '/16-rock-paper-scissors' }
+    { id: 15, text: 'Rock Paper Scissors', link: '/16-rock-paper-scissors' },
+    { id: 16, text: 'Simon Game', link: '/17-simon-game' }
 ];
 
 const listItems: React.JSX.Element[] = navigationList.map(item => {

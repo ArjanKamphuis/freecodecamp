@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Original+Surfer&effect=emboss');
+
+section * {
+    all: revert;
+}
+
+#simon-app {
+    background: url(/images/simon-bg.jpg);
+    min-height: calc(100vh - 5rem);
+    display: grid;
+    align-items: center;
+}
+
+.button {
+  border-radius: 50% !important;
+  font-size: 1.5em;
+  background-color: lightgray;
+}
+
+#switches, .text1, .text2, #title {
+  font-family: 'Original Surfer', cursive;
+}
+
+#switches {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.toggle {
+    margin: 0 1.5rem;
+}
+
+.text1 {
+    display: flex;
+    justify-content: center;
+}
+.text1 > span:last-child {
+    margin-left: 4rem;
+}
+
+#title {
+  font-size: 40px;
+}
+
+#level {
+  background: #330000;
+  color: red;
+  font-family: courier;
+  font-size: 20px;
+  height: 30px;
+  width: 50px;
+  line-height: 30px;
+  margin: 0 auto;
+}
+
+#outer-circle {
+  background: #385a94;
+  border-radius: 50%;
+  height: 500px;
+  width: 500px;
+  position: relative;
+  border-style: solid;
+  border-width: 10px;
+  margin: auto;
+  box-shadow: 8px 8px 15px 5px #888888;
+}
+
+#topleft, #topright, #bottomleft, #bottomright, #inner-circle {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    border-style: solid;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+}
+
+#topleft, #topright, #bottomleft, #bottomright {
+    border-width: 5px;
+}
+
+#topleft {  
+    border-radius: 250px 0 0 0;
+  background: darkgreen;
+  margin: -250px 0px 0px -250px;
+}
+
+#topright {
+  border-radius: 0 250px 0 0;
+  background: darkred;
+  margin: -250px 0px 0px 0px;
+}
+
+#bottomleft {
+  border-radius: 0 0 0 250px;
+  background: goldenrod;
+  margin: 0px -250px 0px -250px;
+}
+
+#bottomright {
+  border-radius: 0 0 250px 0;
+  background: darkblue;
+  margin: 0px 0px -250px 0px;
+}
+
+#inner-circle {
+    display: grid;
+    align-items: center;
+  background: grey;
+  border-radius: 50%;
+  border-width: 10px;
+  margin: -125px 0px 0px -125px;
+}
+
+#inner-circle-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 12rem;
+    margin: 0 auto;
+}
+
+.led {
+    min-width: 1rem;
+    min-height: 1rem;
+    border: 1px solid #000;
+    border-radius: 2.5em;
+    background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
+    box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
+  }
+  .led.on {
+    background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
+    box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
+  }
