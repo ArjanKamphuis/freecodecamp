@@ -1,0 +1,121 @@
+.flappy-bird {
+    width: 660px;
+    height: 780px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.border-left, .border-right {
+    width: 80px;
+    height: 780px;
+    position: absolute;
+    background-color: white;
+    z-index: 2;
+}
+
+.border-right {
+    left: 580px;
+}
+
+.border-top {
+    width: 660px;
+    height: 50px;
+    position: absolute;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.flappy-bird-container {
+    width: 500px;
+    height: 730px;
+    position: absolute;
+    left: 80px;
+    top: 50px;
+}
+
+.sky {
+    background-image: url('/flappy-bird/fb-game-background.png');
+    width: 500px;
+    height: 580px;
+    position: absolute;
+}
+
+.bird {
+    background-image: url('/flappy-bird/flappy-bird.png');
+    width: 60px;
+    height: 45px;
+    position: absolute;
+    left: 220px;
+    bottom: 100px;
+}
+
+.ground {
+    background-image: url('/flappy-bird/bottom-background.png');
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    top: 580px;
+    z-index: 1;
+}
+
+.obstacle {
+    background-image: url('/flappy-bird/flappybird-pipe.png');
+    width: 60px;
+    height: 300px;
+    position: absolute;
+}
+.top-obstacle {
+    transform: rotate(180deg);
+}
+
+.start-btn {
+    z-index: 10;
+    border: 2px solid black;
+    background-color: lightblue;
+    padding: 2px 4px;
+    position: absolute;
+    left: 215px;
+    top: 633px;
+    border-radius: 9999px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.start-btn:hover {
+    background-color: lightskyblue;
+}
+
+@keyframes slideright {
+    from {
+        background-position: 10000%;
+    }
+    to {
+        background-position: 0%;
+    }
+  }
+  
+  @-webkit-keyframes slideright {
+    from {
+        background-position: 10000%;
+    }
+    to {
+        background-position: 0%;
+    }
+}
+
+.ground-container {
+    width: 580px;
+    height: 150px;
+    position: absolute;
+}
+
+.ground-moving {
+    position: absolute;
+    top: 580px;
+    height: 150px;
+    background-image: url('/flappy-bird/bottom-background.png');
+    background-repeat: repeat-x;
+    animation: slideright 100s infinite linear;
+    -webkit-animation: slideright 100s infinite linear;
+    width: 100%;
+    z-index: 1;
+}
