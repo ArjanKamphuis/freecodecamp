@@ -16,4 +16,4 @@ TETROMINOS.set('T', { shape: [[0, 0, 0], ['T', 'T', 'T'], [0, 'T', 0]], color: '
 TETROMINOS.set('Z', { shape: [['Z', 'Z', 0], [0, 'Z', 'Z'], [0, 0, 0]], color: '227, 78, 78' });
 TETROMINOS.set('I', { shape: [[0, 'I', 0, 0], [0, 'I', 0, 0], [0, 'I', 0, 0], [0, 'I', 0, 0]], color: '80, 227, 230' });
 
-export const randomTetromino = (): Tetromino => TETROMINOS.get(tetrominoTypes[Math.floor(Math.random() * tetrominoTypes.length)])!;
+export const randomTetromino = (): Tetromino => TETROMINOS.get(tetrominoTypes[Math.floor(Math.random() * (tetrominoTypes.length - 1)) + 1])!;
