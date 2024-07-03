@@ -6,6 +6,16 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'www.course-api.com',
                 pathname: '/images/people/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                pathname: '/diqqf3eq2/image/upload/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.course-api.com',
+                pathname: '/images/tours/**'
             }
         ]
     }

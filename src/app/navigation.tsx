@@ -36,7 +36,12 @@ const navigationList: NavigationLink[] = [
     { id: 25, text: 'Frogger Game', link: '/26-frogger' },
     { id: 26, text: 'Tetris', link: '/27-tetris' },
     { id: 27, text: 'Tic-Tac-Toe', link: '/28-tic-tac-toe' },
-    { id: 28, text: 'Tetris with React Hooks', link: '/29-tetris' }
+    { id: 28, text: 'Tetris with React Hooks', link: '/29-tetris' },
+    { id: 29, text: 'Birthday Reminder', link: '/30-birthday' },
+    { id: 30, text: 'Tours', link: '/31-tours' },
+    { id: 31, text: 'Accordion', link: '/32-accordion' },
+    { id: 32, text: 'Tabs for Portfolio', link: '/33-portfolio' },
+    { id: 33, text: 'Image Slider', link: '/34-slider' }
 ];
 
 const listItems: React.JSX.Element[] = navigationList.map(item => {
