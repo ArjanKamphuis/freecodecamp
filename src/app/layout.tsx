@@ -22,10 +22,7 @@ export default function RootLayout({
                 <div className="min-h-screen">
                     <Header />
                     <div className="flex max-w-6xl mx-auto">
-                        <nav className="w-1/4 border-r border-black p-4">
-                            <h2 className="text-xl font-semibold">Projects:</h2>
-                            <NavigationList />
-                        </nav>
+                        <NavigationList />
                         <main className="w-3/4 p-4">
                             {children}
                         </main>

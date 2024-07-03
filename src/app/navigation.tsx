@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { ReactNode, memo, useMemo, useState } from "react";
 
 type NavigationLink = {
     id: number;
@@ -44,15 +46,46 @@ const navigationList: NavigationLink[] = [
     { id: 33, text: 'Image Slider', link: '/34-slider' }
 ];
 
-const listItems: React.JSX.Element[] = navigationList.map(item => {
+type NavButtonProps = {
+    children: ReactNode;
+    active: boolean;
+    onClick: () => void;
+};
+
+const NavButton = memo(({ children, active, onClick }: NavButtonProps): React.JSX.Element => {
+    let classes: string = 'text-gray-800 border border-blue-500 rounded-xl py-1 px-2';
+    classes += `${active ? ' bg-blue-500 text-white border-gray-800 hover:bg-blue-600 active:bg-blue-700' : ' hover:bg-gray-100 active:bg-gray-200'}`;
     return (
-        <li key={item.id} className=" text-blue-500 hover:text-blue-600 hover:underline font-medium">
-            <Link href={item.link}>{item.id + 1}. {item.text}</Link>
-        </li>
+        <button className={classes} onClick={onClick}>{children}</button>
     );
 });
+NavButton.displayName = 'NavButton';
 
 export const NavigationList = React.memo(() => {
-    return <ul>{listItems}</ul>;
+    const [listOffset, setListOffset] = useState<number>(0);
+    const pageSize: number = 10;
+
+    const list = useMemo((): React.JSX.Element[] => {
+        return navigationList.filter(item => item.id >= listOffset && item.id < listOffset + pageSize).map(item => {
+            return (
+                <li key={item.id} className=" text-blue-500 hover:text-blue-600 hover:underline font-medium">
+                    <Link href={item.link}>{item.id + 1}. {item.text}</Link>
+                </li>
+            );
+        });
+    }, [listOffset]);
+
+    return (
+        <nav className="w-1/4 border-r border-black p-4 space-y-2">
+            <h2 className="text-xl font-semibold">Projects:</h2>
+            <div className="flex justify-between">
+                <NavButton active={listOffset === 0} onClick={() => setListOffset(0)}>1-10</NavButton>
+                <NavButton active={listOffset === 10} onClick={() => setListOffset(10)}>11-20</NavButton>
+                <NavButton active={listOffset === 20} onClick={() => setListOffset(20)}>21-30</NavButton>
+                <NavButton active={listOffset === 30} onClick={() => setListOffset(30)}>31-40</NavButton>
+            </div>
+            <ul>{list}</ul>
+        </nav>
+    );
 });
 NavigationList.displayName = 'NavigationList';
