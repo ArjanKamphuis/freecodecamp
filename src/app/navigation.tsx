@@ -43,7 +43,9 @@ const navigationList: NavigationLink[] = [
     { id: 30, text: 'Tours', link: '/31-tours' },
     { id: 31, text: 'Accordion', link: '/32-accordion' },
     { id: 32, text: 'Tabs for Portfolio', link: '/33-portfolio' },
-    { id: 33, text: 'Image Slider', link: '/34-slider' }
+    { id: 33, text: 'Image Slider', link: '/34-slider' },
+    { id: 34, text: 'Color Generator', link: '/35-color-generator' },
+    { id: 35, text: 'Stripe Menus', link: '/36-stripe-menus' }
 ];
 
 type NavButtonProps = {
@@ -78,7 +80,7 @@ export const NavigationList = React.memo(() => {
     return (
         <nav className="w-1/4 border-r border-black p-4 space-y-2">
             <h2 className="text-xl font-semibold">Projects:</h2>
-            <div className="flex justify-between">
+            <div className="flex flex-col xl:flex-row xl:space-x-2">
                 <NavButton active={listOffset === 0} onClick={() => setListOffset(0)}>1-10</NavButton>
                 <NavButton active={listOffset === 10} onClick={() => setListOffset(10)}>11-20</NavButton>
                 <NavButton active={listOffset === 20} onClick={() => setListOffset(20)}>21-30</NavButton>

@@ -21,7 +21,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <div className="min-h-screen">
                     <Header />
-                    <div className="flex max-w-6xl mx-auto">
+                    <div className="flex px-10">
                         <NavigationList />
                         <main className="w-3/4 p-4">
                             {children}
